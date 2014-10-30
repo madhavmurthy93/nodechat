@@ -5,6 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var bodyParser = require('body-parser');
+var Message = require('./models/message.js').Message;
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/messenger');
 
 var routes = require('./routes');
 
@@ -34,9 +37,19 @@ io.sockets.on('connection', function(socket) {
             people[socket.id] = {'fname': session.user.fname, 
                                 'lname': session.user.lname, 
                                 'username': session.user.username};
+            var messages;
+            Message.find(function(err, m) {
+                if (err) return console.error(err);
+                messages = m;
+                socket.emit('update',
+                    {'username': session.user.username,
+                     'messages': messages});
+            });
+            
             socket.broadcast.emit('connected', 
                 {'fname': session.user.fname, 
-                'lname': session.user.lname});
+                'lname': session.user.lname
+                });
         } else {
             socket.emit('error', 'not logged in.');
         }
@@ -45,12 +58,29 @@ io.sockets.on('connection', function(socket) {
     // send message by user.
     socket.on('send', function(message) {
         if(people[socket.id] != undefined) {
+            var date = new Date();
             socket.emit('my-message',
                 {'fname': people[socket.id].fname,
+                 'date': date,
                  'message': message});
             socket.broadcast.emit('message', 
                 {'fname': people[socket.id].fname,
+                 'date': date,
                  'message': message});
+            
+            var new_message = new Message({
+                sender: {
+                    fname: people[socket.id].fname,
+                    lname: people[socket.id].lname,
+                    username: people[socket.id].username
+                },
+                message: message,
+                date: date
+            });
+            
+            new_message.save(function(err) {
+                if (err) return console.error(err);
+            });
         } else {
             socket.emit('error', 'not logged in.');
         }
