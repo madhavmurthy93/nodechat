@@ -1,0 +1,29 @@
+extends layout
+
+block stylesheet
+	link(rel='stylesheet', href='/stylesheets/chat.css')
+
+block content
+	div.container#chat
+		div.jumbotron#chatframe
+			h1#head 
+				i.fa.fa-comments 
+				| Messenger
+			div#messages
+				
+			form(class='form-inline' role='form')
+				div#chatform
+					input#message(type='text', name='message', placeholder='Enter message' size='27' class='form-control', autocomplete='off' autofocus)
+					input#send(type='submit', value='Send', class='send btn btn-primary')
+
+		div(class ='modal fade', id='myModal', tabindex='-1', role='dialog', aria-labelledby='myModalLabel', aria-hidden='true')
+			div.modal-dialog
+				div.modal-content
+					div.modal-header
+						h2.modal-title#myModalLabel Notification
+					div.modal-body
+						p 
+					div.modal-footer
+						p Press esc to close notification
+	script(src='/socket.io/socket.io.js').
+	script(src='/javascripts/chat.js').

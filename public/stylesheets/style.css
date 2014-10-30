@@ -1,0 +1,34 @@
+.jumbotron {
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 68px;
+}
+
+.jumbotron h1 {
+	text-align: center;
+	font-size: 34pt;
+}
+
+.jumbotron h2 {
+	margin-top: 5px;
+	margin-bottom: 2px;
+	font-size: 12pt;
+}
+
+.jumbotron p {
+	font-size: 10pt;
+	margin-bottom: 5pt;
+}
+
+i {
+	padding-right: 5px;
+}
+
+.bg-info {
+	border-radius: 5px;
+	padding-left: 2px;
+	padding-right: 2px;
+	margin-right: 2px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	color: #555;
+}

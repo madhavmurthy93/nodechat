@@ -1,0 +1,71 @@
+.jumbotron {
+	margin-bottom: 20px;
+}
+
+#chat {
+	margin-top: 20px;
+	padding-top: 20px;
+}
+
+#chatframe {
+	max-width: 500px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#chatform {
+	max-width: 330px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.form-control {
+	padding: 15px;
+	margin: 5px;
+	margin-left: 0px;
+}
+
+.send {
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+#messages {
+	max-width: 330px;
+	height: 305px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	overflow-y: scroll;
+}
+
+.bg-success{
+	border-radius: 5px;
+	padding-left: 2px;
+	padding-right: 2px;
+	margin-right: 2px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	color: #555;
+}
+
+.left, .right {
+	width: 260px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.left > h2, .right > h2 {
+    font-size: 11pt;
+}
+
